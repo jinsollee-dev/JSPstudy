@@ -3,4 +3,26 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd"
          version="6.0">
+    <context-param>
+        <param-name>MySQLDriver</param-name>
+        <param-value>com.mysql.cj.jdbc.Driver</param-value>
+    </context-param>
+    <context-param>
+        <param-name>MySQLURL</param-name>
+        <param-value>jdbc:mysql://localhost:3306/jspdb?useSSL=false&amp;serverTimezone=Asia/Seoul&amp;characterEncoding=UTF-8</param-value>
+    </context-param>
+    <context-param>
+        <param-name>MySQLId</param-name>
+        <param-value>ljs</param-value>
+    </context-param>
+    <context-param>
+        <param-name>MySQLPwd</param-name>
+        <param-value>1234</param-value>
+    </context-param>
+
+<!--    <resource-ref>-->
+<!--        <description>DB connection</description>-->
+<!--        <res-ref-name>dbcp_mysql1</res-ref-name>-->
+<!--    </resource-ref>-->
+
 </web-app>
