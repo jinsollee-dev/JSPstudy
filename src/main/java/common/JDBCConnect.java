@@ -1,5 +1,8 @@
 package common;
 
+import jakarta.servlet.Servlet;
+import jakarta.servlet.ServletContext;
+
 import java.sql.*;
 
 
@@ -30,29 +33,42 @@ public class JDBCConnect {
         }
     }
 
-    public JDBCConnect(String driver, String url, String id, String pwd){
-        try{
+    public JDBCConnect(String driver, String url, String id, String pwd) {
+        try {
             Class.forName(driver);
-            conn = DriverManager.getConnection(url,id,pwd);
-            System.out.println("JDBC connect!!!!");
+            conn = DriverManager.getConnection(url, id, pwd);
+            System.out.println("JDBC2 connect!!!!");
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    public JDBCConnect(ServletContext applicaton){
+        try{
+            String driver= applicaton.getInitParameter("MySQLDriver");
+            Class.forName(driver);
+            String url = applicaton.getInitParameter("MySQLURL");
+            String id = applicaton.getInitParameter("MySQLId");
+            String pwd = applicaton.getInitParameter("MySQLPwd");
+            conn = DriverManager.getConnection(url, id, pwd);
+            System.out.println("JDBC3 Success!!!!!!!");
         } catch (Exception ex){
             ex.printStackTrace();
-
         }
-
 
     }
 
- public void close(){
-        try{
-            if(rs != null) rs.close();
-            if(stmt != null) stmt.close();
-            if(pstmt !=null) pstmt.close();
-            if(conn != null) conn.close();
+    public void close() {
+        try {
+            if (rs != null) rs.close();
+            if (stmt != null) stmt.close();
+            if (pstmt != null) pstmt.close();
+            if (conn != null) conn.close();
 
-        } catch (Exception ex){}
+        } catch (Exception ex) {
+        }
 
- }
+    }
 
 }
 
