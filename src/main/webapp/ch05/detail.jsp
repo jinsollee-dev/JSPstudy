@@ -10,19 +10,19 @@
 <body>
 <h2>회원 상세정보 보기</h2>
 <%
-    String id = request.getParameter("id");
+   int mno = Integer.parseInt(request.getParameter("mno"));
 
     JDBCConnect jdbc = new JDBCConnect();
     MemberDTO m = null;
-    String sql = "select * from member where id=?";
+    String sql = "select * from member where mno=?";
     PreparedStatement pstmt = jdbc.conn.prepareStatement(sql);
-    pstmt.setString(1, id);
+    pstmt.setInt(1, mno);
     ResultSet rs = pstmt.executeQuery();
 
     if(rs.next()){
         m=new MemberDTO();
-        m.setMno(rs.getInt("mno"));
-        m.setId(id);
+        m.setMno(mno);
+        m.setId(rs.getString("id"));
         m.setPass(rs.getString("pass"));
         m.setName(rs.getString("name"));
         m.setRegidate(rs.getDate("regidate"));
